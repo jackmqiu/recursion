@@ -11,7 +11,7 @@ var getElementsByClassName = function(className
   var searchNodes  = function(node){
     var classes = node.className.split(' ');//creates array of classes in this particular node that is navigated to in this
     //specific call of getElementsByClassName
-    if(node.className === className){
+    if(classes.includes(className)){
       elements.push(node);//when classNames match, add node to output array
     }
 
