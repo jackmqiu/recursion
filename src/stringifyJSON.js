@@ -22,5 +22,13 @@ var stringifyJSON = function(obj) {
   if(typeof obj === 'string'){
     return '"' + obj + '"';
   }
+  if(Array.isArray(obj)){
+    var array = [];
+    for (var i = 0; i < obj.length; i++){//need recursion here
+      array.push(stringifyJSON(obj[i]));
+    }
+    var stringOut = array.join(',');
+    return '['+stringOut+']';
+  }
 
 };
