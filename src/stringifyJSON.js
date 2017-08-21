@@ -25,10 +25,23 @@ var stringifyJSON = function(obj) {
   if(Array.isArray(obj)){
     var array = [];
     for (var i = 0; i < obj.length; i++){//need recursion here
+
       array.push(stringifyJSON(obj[i]));
     }
     var stringOut = array.join(',');
     return '['+stringOut+']';
+  }
+  if(typeof obj === 'object'){
+    var array = [];
+    for (var key in obj){
+      if(obj[key] === undefined || typeof obj[key] === 'function'){
+        continue;
+      }
+      array.push(stringifyJSON(key)+':' + stringifyJSON(obj[key]));
+
+    }
+    var objContent = array.join(',');
+    return '{' + objContent + '}';
   }
 
 };
